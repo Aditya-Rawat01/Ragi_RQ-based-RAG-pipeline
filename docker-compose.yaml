@@ -1,0 +1,13 @@
+services:
+  valkey:
+    image: valkey/valkey
+    ports:
+      - 6379:6379
+  vector-db:
+    image: qdrant/qdrant
+    ports:
+      - 6333:6333
+  embedding-model:
+    image: ollama/ollama # you have to install the nomic-embed-text from ollama to this ollama container seperately.
+    ports:
+      - 11434:11434
