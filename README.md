@@ -89,9 +89,9 @@ If Redis (Valkey) was stopped and workers still show up:
 
 ---
 
-# 🧠 Project Context (Your Architecture)
+# 🧠 Project Context (Architecture)
 
-You built a custom RAG pipeline using:
+I built a custom RAG pipeline using:
 - **RQ** → concurrency + parallelism
 - **Ollama** (nomic-embed-text) → local embeddings
 - **Gemini API** & **OpenAI SDK** → retrieval + generation
@@ -149,8 +149,8 @@ uv sync
 Inside `.env`:
 ```env
 GEMINI_API_KEY=""
-OPENAI_API_KEY=""
-QDRANT_URL="http://localhost:6333"
+OPENAI_API_KEY="" (if you are using openai llm instead of gemini)
+QDRANT_URL="http://localhost:6333" (not needed if running locally.)
 ```
 
 ---
@@ -198,53 +198,3 @@ You now have:
 - Gemini/OpenAI retrieval
 - Fully functional RAG pipeline
 - Cross-platform worker support
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-for windows to run the worker.py we have to do: rq worker -w rq.worker.SpawnWorker     || as it avoids the fork() call which is not available in windows.
-it still shows error for os.wait4() command, so i am pivoting to gevent instead of native os module to run the rq low level commands.
-gevent doesnt work for me
-
-On Linux / macOS, Python can use os.fork() to create new processes.
-
-On Windows, there is no fork() — Windows uses a different multiprocessing start method.
-For development on Windows → use SimpleWorker.
-rq by default thinks that the redis server is running at localhost:6379 so if you have some other port or domain, then pass the config in cli with --url flag.
-
-command: rq worker -w rq.worker.SimpleWorker  to start one worker
-
-to start worker pool, so more req can be processed parallelly, command: rq worker-pool -w rq.worker.SimpleWorker -n 3
-to know how many workers are running, command: rq info 
-if you have stopped the valkey instance and the command rq info still shows workers, then they will be removed in 420 sec while cleaning up zombie workers.
-
-
-after job completion, job moves to one of the two redis registeries: success and failures.
-succeed jobs have ttl of default 500 sec, after that they are removed by redis for storage efficiency.
-failed jobs can be retried or removed completely but they dont have a ttl by default, we can set that manually though.
-
-for os , first run the export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-after that run rq worker YOUR_QUEUE_NAME
