@@ -1,4 +1,5 @@
 # 🤖 RAG Pipeline + RQ Workers
+### Click to see the demo:
 [![RAG Pipeline Demo](https://res.cloudinary.com/dlvcibxgx/video/upload/so_0/preview_ka1nxk.jpg)](https://res.cloudinary.com/dlvcibxgx/video/upload/v1768463666/preview_ka1nxk.mp4)
 
 
