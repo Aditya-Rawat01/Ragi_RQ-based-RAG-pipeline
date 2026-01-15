@@ -1,5 +1,6 @@
 # 🤖 RAG Pipeline + RQ Workers
-<video controls src="/preview.mp4" title="Working of RAGI"></video>
+![RAG Pipeline Demo](preview.mp4)
+
 ## Overview
 This project implements a Retrieval-Augmented Generation (RAG) pipeline with:
 - Local embeddings using **Ollama (nomic-embed-text)**
