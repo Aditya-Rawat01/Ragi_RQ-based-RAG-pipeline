@@ -1,11 +1,11 @@
 # 🤖 RAG Pipeline + RQ Workers
-
+<video controls src="/preview.mp4" title="Working of RAGI"></video>
 ## Overview
 This project implements a Retrieval-Augmented Generation (RAG) pipeline with:
 - Local embeddings using **Ollama (nomic-embed-text)**
 - Vector storage via **Qdrant**
 - Retrieval using **Gemini API / OpenAI SDK**
-- Async API server using **FastAPI + Uvicorn**
+- API server using **FastAPI + Uvicorn**
 - Background + parallel job execution using **RQ (Redis Queue)**
 
 Goal: Retrieve context from a PDF, embed + index it, then answer user queries using grounded retrieval.
@@ -187,7 +187,7 @@ inside the script.
 ```bash
 uvicorn main:app --reload
 ```
-- go to localhost:8080/docs and try out the /chat and /job-status endpoints.
+- go to http://localhost:8080/docs and try out the /chat and /job-status endpoints.
 ---
 
 # 🧩 Summary

@@ -26,5 +26,7 @@ def status(
     job_id:str = Query(..., description="job id")
 ):
     job = queue.fetch_job(job_id)
+    if not job:
+        return {"msg": "job not found"}
     result = job.return_value()
     return {"result": result}

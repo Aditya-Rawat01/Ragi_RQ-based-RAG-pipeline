@@ -12,6 +12,7 @@ dependencies = [
     "langchain-qdrant>=1.1.0",
     "langchain-text-splitters>=1.0.0",
     "openai>=2.9.0",
+    "pypdf>=6.6.0",
     "rq>=2.6.1",
     "uvicorn>=0.38.0",
 ]
